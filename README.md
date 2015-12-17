@@ -7,7 +7,7 @@ A set of UI components, in the purpose of introducing [Material Design][md] to a
 
 [npm-badge]: https://img.shields.io/npm/v/react-native-material-kit.svg
 [npm]: https://www.npmjs.com/package/react-native-material-kit
-[rn-badge]: https://img.shields.io/badge/react--native-v0.12.x-05A5D1.svg
+[rn-badge]: https://img.shields.io/badge/react--native-v0.16.x-05A5D1.svg
 [rn]: https://facebook.github.io/react-native
 [md]: http://www.google.com/design/spec/material-design/introduction.html
 [license-badge]: https://img.shields.io/dub/l/vibe-d.svg
@@ -51,7 +51,7 @@ Now run `pod install`. This will create an Xcode workspace containing all necess
 
   ```
 1. Add `compile project(':RNMaterialKit')` to your `android/app/build.gradle`
-1. Add `ReactMaterialKitPackage` to your `ReactInstanceManager` instance, in your `MainActivity`:
+1. Import `com.github.xinthink.rnmk.ReactMaterialKitPackage` and register it to the `ReactInstanceManager`, in your `MainActivity` (or equivalent):
   ```java
   mReactInstanceManager = ReactInstanceManager.builder()
       .setApplication(getApplication())
@@ -68,13 +68,15 @@ Finally, you're good to go, feel free to require `react-native-material-kit` in 
 Have fun! :metal:
 
 ## Resources
-- Source code of [Demo app][]
+- [Release Notes]
 - Refer to the [Annotated Source][docs] as API docs
+- Source code of [Demo app][]
 - For contributors, please refer to [How to debug local RNMK module][debug-with-demo]
 
 [docs]: http://xinthink.github.io/react-native-material-kit/docs/index.html
 [Demo app]: https://github.com/xinthink/rnmk-demo
 [debug-with-demo]: https://github.com/xinthink/rnmk-demo#debugging-local-rnmk-module
+[Release Notes]: https://github.com/xinthink/react-native-material-kit/releases
 
 ## Components
 - [Buttons](#buttons)
@@ -164,7 +166,7 @@ the jsx equivalent:
 [mdl-theme]: http://www.getmdl.io/customize/index.html
 [buttons-sample]: https://github.com/xinthink/rnmk-demo/blob/master/app/buttons.js
 [issue-3]: https://github.com/xinthink/react-native-material-kit/issues/3
-[button-props-doc]: http://www.xinthink.com/react-native-material-kit/docs/lib/MKButton.html#props
+[button-props-doc]: http://www.xinthink.com/react-native-material-kit/docs/lib/mdl/Button.html#props
 [android-issue-shadow]: https://facebook.github.io/react-native/docs/known-issues.html#no-support-for-shadows-on-android
 
 ### Cards
@@ -172,7 +174,7 @@ the jsx equivalent:
 
 Apply [`Card Style`][cards-mdl] with only few styles !.
 ```jsx
-require('react-native-material-kit');
+const MK = require('react-native-material-kit');
 const {
   MKCardStyles
 } = MK;
@@ -365,6 +367,17 @@ The two `Text` tags here, similar to [State List][android-state-list] in *Androi
     checked={true}
     group={this.radioGroup}
   />
+```
+
+You can customize the styles by changing the global theme, which affects all radio buttons across the whole app.
+
+```js
+setTheme({radioStyle: {
+  fillColor: `rgba(${MKColor.RGBTeal},.8)`,
+  borderOnColor: `rgba(${MKColor.RGBTeal},.6)`,
+  borderOffColor: `rgba(${MKColor.RGBTeal},.3)`,
+  rippleColor: `rgba(${MKColor.RGBTeal},.15)`,
+}});
 ```
 
 👉 [props reference][radio-props-doc] and [example code][toggles-sample]
